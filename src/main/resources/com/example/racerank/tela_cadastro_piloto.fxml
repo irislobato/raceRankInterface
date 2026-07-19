@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="15.0" style="-fx-padding: 20; -fx-background-color: #FFFFFF;"
+      xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.example.racerank.controller.CadastroPilotoController">
+
+    <Label style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #111827;" text="Cadastro de Piloto" />
+
+    <VBox spacing="5.0">
+        <Label text="Nome:" />
+        <TextField fx:id="campoNome" />
+    </VBox>
+
+    <VBox spacing="5.0">
+        <Label text="Equipe:" />
+        <TextField fx:id="campoEquipe" />
+    </VBox>
+
+    <HBox spacing="10.0" alignment="CENTER_RIGHT">
+        <Button text="Cancelar" onAction="#cancelar" />
+        <Button text="Salvar" onAction="#salvar" />
+    </HBox>
+
+</VBox>
