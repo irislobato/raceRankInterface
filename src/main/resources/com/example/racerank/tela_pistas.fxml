@@ -33,7 +33,7 @@
             <TableColumn fx:id="colunaId" prefWidth="50.0" text="ID" />
             <TableColumn fx:id="colunaNome" prefWidth="300.0" text="Nome" />
             <TableColumn fx:id="colunaLocal" prefWidth="250.0" text="Local" />
-            <TableColumn fx:id="colunaDistancia" prefWidth="200.0" text="Distancia (m" />
+            <TableColumn fx:id="colunaDistancia" prefWidth="200.0" text="Distancia (m)" />
         </columns>
 
         <!-- preenchendo o espaço vazio-->

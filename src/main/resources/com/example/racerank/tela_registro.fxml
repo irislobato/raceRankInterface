@@ -45,8 +45,8 @@
             </columnResizePolicy>
         </TableView>
 
-        <Button text="Excluir" onAction="#excluirVoltaSelecionada"
-                style="-fx-background-color: #DC3545; -fx-text-fill: white;" />
+        <Button text="Excluir" onAction="#excluirVoltaSelecionada" style="-fx-background-color: #DC3545;
+        -fx-text-fill: WHITE; -fx-font-weight: bold; -fx-background-radius: 5;" />
     </VBox>
 
 </HBox>

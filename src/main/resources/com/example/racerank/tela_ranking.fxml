@@ -1,14 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="CONTROLLER_NAME"
-            prefHeight="400.0" prefWidth="600.0">
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.example.racerank.controller.RankingController"
+      spacing="10" style="-fx-padding: 20;">
 
-</AnchorPane>
+    <!--filtro-->
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Label text="Filtrar por Pista:" />
+        <ComboBox fx:id="comboPistas" promptText="Selecione uma pista" onAction="#onPistaSelecionada" />
+        <Button text="Ranking Geral" onAction="#carregarRankingGeral" />
+    </HBox>
+
+    <!--tabela com os dados-->
+    <TableView fx:id="tabelaRanking" VBox.vgrow="ALWAYS"
+               style="-fx-font-size: 14px; -fx-border-color: #DEE2E6; -fx-border-radius: 5;">
+        <columns>
+            <TableColumn fx:id="colPiloto" prefWidth="200.0" text="Piloto" />
+            <TableColumn fx:id="colPista" prefWidth="250.0" text="Pista" />
+            <TableColumn fx:id="colTempo" prefWidth="200.0" text="Tempo" />
+        </columns>
+
+        <!-- preenchendo o espaço vazio-->
+        <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+        </columnResizePolicy>
+    </TableView>
+
+
+</VBox>
