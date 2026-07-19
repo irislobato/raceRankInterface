@@ -103,21 +103,27 @@ public class PilotoController implements Initializable {
 
     private void abrirModalEdicao(PilotoDto pilotoParaEditar) {
         try {
+            System.out.println("Iniciando carregamento do FXML...");
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/racerank/tela_cadastro_piloto.fxml"));
+
             Parent root = loader.load();
+            System.out.println("FXML carregado com sucesso!");
 
             CadastroPilotoController controller = loader.getController();
-            controller.setPiloto(pilotoParaEditar); //passa o piloto para o formulário
+            controller.setPiloto(pilotoParaEditar);
 
             Stage stage = new Stage();
-            stage.setTitle(pilotoParaEditar == null ? "Novo Cadastro" : "Editar Piloto");
-            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setTitle("Cadastro");
             stage.setScene(new Scene(root));
+
+            System.out.println("Tentando mostrar a janela...");
             stage.showAndWait();
+            System.out.println("Janela fechada.");
 
             carregarDadosDoServidor();
         }
         catch (Exception exception) {
+            System.out.println("ERRO CRÍTICO NO MODAL:");
             exception.printStackTrace();
         }
     }
@@ -131,14 +137,22 @@ public class PilotoController implements Initializable {
     }
 
     @FXML
+    public void novoPiloto(ActionEvent event) {
+        System.out.println("Botão Novo Piloto clicado!"); //para confirmar se os botões estão funcionando caso dê algum erro
+        abrirModalEdicao(null); // null abre o formulário vazio
+    }
+
+    @FXML
     public void editarPiloto(ActionEvent event) {
         System.out.println("Botão editar cliclado!");
         PilotoDto selecionado = tabelaPilotos.getSelectionModel().getSelectedItem();
         if (selecionado == null) {
-            System.out.println("Nenhum piloto slecionado!");
-            mostrarAlerta("Aviso", "Selecione um piloto para editar!");
+            System.out.println("DEBUG: O selecionado está NULO.");
+            mostrarAlerta("Aviso", "Selecione um piloto na tabela para editar!");
             return;
         }
+
+        System.out.println("DEBUG: Piloto selecionado: " + selecionado.getNome());
         abrirModalEdicao(selecionado);
     }
 

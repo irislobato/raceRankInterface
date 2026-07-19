@@ -20,8 +20,8 @@
         <Region HBox.hgrow="ALWAYS" />
 
         <!--botão adicionar um novo piloto-->
-        <Button style="-fx-background-color: #0D6EFD; -fx-text-fill: WHITE; -fx-font-weight: bold; -fx-padding: 8 15 8 15;
-        -fx-background-radius: 5;" text="+ Novo Piloto" />
+        <Button onAction="#novoPiloto" style="-fx-background-color: #0D6EFD; -fx-text-fill: WHITE; -fx-font-weight: bold;
+        -fx-padding: 8 15 8 15; -fx-background-radius: 5;" text="+ Novo Piloto" />
     </HBox>
 
     <!--barra de pesquisa-->
@@ -47,9 +47,10 @@
     </TableView>
 
     <HBox spacing="10" alignment="CENTER_LEFT" style="-fx-padding: 10 0 0 0;">
-        <Button text="Editar Selecionado" onAction="#editarPiloto" style="-fx-background-color: #FBBF24;" />
-        <Button text="Excluir Selecionado" onAction="#deletarPiloto" style="-fx-background-color: #EF4444;
-        -fx-text-fill: white;" />
+        <Button text="Editar Selecionado" onAction="#editarPiloto"  style="-fx-background-color: #0D6EFD; -fx-text-fill: WHITE;
+        -fx-font-weight: bold; -fx-background-radius: 5;" />
+        <Button text="Excluir Selecionado" onAction="#deletarPiloto" style="-fx-background-color: #0D6EFD; -fx-text-fill: WHITE;
+        -fx-font-weight: bold; -fx-background-radius: 5;" />
     </HBox>
 
 </VBox>

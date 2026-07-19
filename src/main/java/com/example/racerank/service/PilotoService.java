@@ -40,13 +40,24 @@ public class PilotoService {
     //uptade and create
     public void salvarPiloto(PilotoDto piloto, String metodo) throws Exception {
         String json = objectMapper.writeValueAsString(piloto);
+
+        // Se for PUT, a URL precisa incluir o ID
+        String url = API_URL + (metodo.equals("PUT") ? "/" + piloto.getId() : "");
+
         HttpRequest.Builder builder = HttpRequest.newBuilder()
-                .uri(URI.create(API_URL))
+                .uri(URI.create(url))
                 .header("Content-Type", "application/json");
 
-        if (metodo.equals("POST")) builder.POST(HttpRequest.BodyPublishers.ofString(json));
-        else builder.PUT(HttpRequest.BodyPublishers.ofString(json));
+        if (metodo.equals("POST")) {
+            builder.POST(HttpRequest.BodyPublishers.ofString(json));
+        } else {
+            builder.PUT(HttpRequest.BodyPublishers.ofString(json));
+        }
 
-        httpClient.send(builder.build(), HttpResponse.BodyHandlers.ofString());
+        HttpResponse<String> response = httpClient.send(builder.build(), HttpResponse.BodyHandlers.ofString());
+
+        // Log para ver o que a API respondeu
+        System.out.println("Status da resposta da API: " + response.statusCode());
+        System.out.println("Resposta da API: " + response.body());
     }
 }
