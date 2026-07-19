@@ -136,6 +136,7 @@ public class PilotoController implements Initializable {
         alert.showAndWait();
     }
 
+
     @FXML
     public void novoPiloto(ActionEvent event) {
         System.out.println("Botão Novo Piloto clicado!"); //para confirmar se os botões estão funcionando caso dê algum erro

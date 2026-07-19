@@ -4,11 +4,12 @@ import com.example.racerank.dto.PilotoDto;
 import com.example.racerank.service.PilotoService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 public class CadastroPilotoController {
-
     @FXML
     private TextField campoNome;
 
@@ -16,40 +17,55 @@ public class CadastroPilotoController {
     private TextField campoEquipe;
 
     private PilotoService pilotoService = new PilotoService();
-    private PilotoDto pilotoEdicao; // Variável para saber se estamos editando
+    private PilotoDto pilotoEdicao;
 
-    //metodo chamado pelo botão Salvar
     @FXML
     public void salvar(ActionEvent event) {
+        String nome = campoNome.getText();
+        String equipe = campoEquipe.getText();
+
+        //impede de salvar campos vazios
+        if (nome == null || nome.trim().isEmpty() || equipe == null || equipe.trim().isEmpty()) {
+            mostrarAlerta("Erro de Validação", "Todos os campos devem ser preenchidos na criação!");
+            return; // Para o método aqui e não fecha a janela
+        }
+
         try {
-            // Se pilotoEdicao for null, é um POST (Novo), senão é PUT (Editar)
             String metodo = (pilotoEdicao == null) ? "POST" : "PUT";
 
             PilotoDto dto = new PilotoDto();
-            if (pilotoEdicao != null) dto.setId(pilotoEdicao.getId()); // Mantém o ID se for edição
+            if (pilotoEdicao != null) dto.setId(pilotoEdicao.getId());
 
-            dto.setNome(campoNome.getText());
-            dto.setEquipe(campoEquipe.getText());
+            dto.setNome(nome);
+            dto.setEquipe(equipe);
 
             pilotoService.salvarPiloto(dto, metodo);
 
-            // Fecha a janela após salvar
+            //fecha a janela apenas se salvar com sucesso
             fecharJanela(event);
-        } catch (Exception exception) {
+        }
+        catch (Exception exception) {
+            mostrarAlerta("Erro", "Erro ao salvar no servidor: " + exception.getMessage());
             exception.printStackTrace();
-            // Aqui você poderia chamar um mostrarAlerta de erro
         }
     }
 
-    //metodo chamado pelo botão Cancelar
     @FXML
     public void cancelar(ActionEvent event) {
         fecharJanela(event);
     }
 
     private void fecharJanela(ActionEvent event) {
-        Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.close();
+    }
+
+    private void mostrarAlerta(String titulo, String mensagem) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(titulo);
+        alert.setHeaderText(null);
+        alert.setContentText(mensagem);
+        alert.showAndWait();
     }
 
     //metodo para receber o piloto caso seja uma edição
@@ -60,4 +76,5 @@ public class CadastroPilotoController {
             campoEquipe.setText(piloto.getEquipe());
         }
     }
+
 }
