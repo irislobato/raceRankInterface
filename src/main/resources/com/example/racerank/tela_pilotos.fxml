@@ -47,9 +47,9 @@
     </TableView>
 
     <HBox spacing="10" alignment="CENTER_LEFT" style="-fx-padding: 10 0 0 0;">
-        <Button text="Editar Selecionado" onAction="#editarPiloto"  style="-fx-background-color: #0D6EFD; -fx-text-fill: WHITE;
+        <Button text="Editar" onAction="#editarPiloto"  style="-fx-background-color: #0D6EFD; -fx-text-fill: WHITE;
         -fx-font-weight: bold; -fx-background-radius: 5;" />
-        <Button text="Excluir Selecionado" onAction="#deletarPiloto" style="-fx-background-color: #0D6EFD; -fx-text-fill: WHITE;
+        <Button text="Excluir" onAction="#deletarPiloto" style="-fx-background-color: #0D6EFD; -fx-text-fill: WHITE;
         -fx-font-weight: bold; -fx-background-radius: 5;" />
     </HBox>
 

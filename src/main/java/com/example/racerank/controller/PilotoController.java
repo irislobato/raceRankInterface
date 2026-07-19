@@ -159,19 +159,32 @@ public class PilotoController implements Initializable {
 
     @FXML
     public void deletarPiloto(ActionEvent event) {
-        System.out.println("Botão deletar clicado!");
         PilotoDto selecionado = tabelaPilotos.getSelectionModel().getSelectedItem();
+
+        //verifica se algo foi selecionado
         if (selecionado == null) {
-            System.out.println("Nenhum piloto selecionado!");
             mostrarAlerta("Aviso", "Selecione um piloto para excluir!");
             return;
         }
-        try {
-            pilotoService.deletarPiloto(selecionado.getId());
-            carregarDadosDoServidor(); //atualiza a tabela na tela
-        }
-        catch (Exception exception) {
-            mostrarAlerta("Erro", "Não foi possível excluir o piloto.");
+
+        //cria o alerta de confirmação
+        Alert confirmacao = new Alert(Alert.AlertType.CONFIRMATION);
+        confirmacao.setTitle("Confirmar Exclusão");
+        confirmacao.setHeaderText("Excluir Piloto");
+        confirmacao.setContentText("Tem certeza que deseja excluir o piloto: " + selecionado.getNome() + "?");
+
+        //mostra o alerta e aguarda a resposta do usuário
+        if (confirmacao.showAndWait().get() == ButtonType.OK) {
+            try {
+                pilotoService.deletarPiloto(selecionado.getId());
+
+                //sucesso
+                mostrarAlerta("Sucesso", "Piloto excluído com sucesso!");
+                carregarDadosDoServidor(); // Atualiza a tabela
+            }
+            catch (Exception exception) {
+                mostrarAlerta("Erro", "Não foi possível excluir o piloto: " + exception.getMessage());
+            }
         }
     }
 }

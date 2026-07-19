@@ -1,14 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="CONTROLLER_NAME"
-            prefHeight="400.0" prefWidth="600.0">
+<VBox spacing="20.0" style="-fx-background-color: #FFFFFF; -fx-padding: 30;"
+      xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.example.racerank.controller.PistaController">
 
-</AnchorPane>
+    <!--cabeçalho-->
+    <HBox alignment="CENTER_LEFT">
+        <Label style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #111827;" text="Pistas" />
+
+        <!--Region HBox.hgrow="ALWAYS" empurra o botão para a direita-->
+        <Region HBox.hgrow="ALWAYS" />
+
+        <!--botão adicionar uma nova pista-->
+        <Button onAction="#novaPista" style="-fx-background-color: #0D6EFD; -fx-text-fill: WHITE; -fx-font-weight: bold;
+        -fx-padding: 8 15 8 15; -fx-background-radius: 5;" text="+ Nova Pista" />
+    </HBox>
+
+    <!--barra de pesquisa-->
+    <HBox>
+        <TextField fx:id="campoPesquisa" prefWidth="300.0" promptText="Buscar pista..." style="-fx-padding: 8;
+        -fx-background-radius: 5; -fx-border-color: #DEE2E6; -fx-border-radius: 5;" />
+    </HBox>
+
+    <!--tabela com os dados-->
+    <TableView fx:id="tabelaPistas" VBox.vgrow="ALWAYS" style="-fx-font-size: 14px; -fx-border-color: #DEE2E6;
+    -fx-border-radius: 5;">
+        <columns>
+            <TableColumn fx:id="colunaId" prefWidth="50.0" text="ID" />
+            <TableColumn fx:id="colunaNome" prefWidth="300.0" text="Nome" />
+            <TableColumn fx:id="colunaLocal" prefWidth="250.0" text="Local" />
+            <TableColumn fx:id="colunaDistancia" prefWidth="200.0" text="Distancia (m" />
+        </columns>
+
+        <!-- preenchendo o espaço vazio-->
+        <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+        </columnResizePolicy>
+    </TableView>
+
+    <!--botões de ação-->
+    <HBox spacing="10" alignment="CENTER_LEFT" style="-fx-padding: 10 0 0 0;">
+        <Button text="Editar" onAction="#editarPista"  style="-fx-background-color: #0D6EFD; -fx-text-fill: WHITE;
+        -fx-font-weight: bold; -fx-background-radius: 5;" />
+    </HBox>
+
+
+</VBox>

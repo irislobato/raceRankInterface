@@ -20,6 +20,11 @@ public class PilotoDto {
         this.equipe = equipe;
     }
 
+    @Override
+    public String toString() {
+        return this.nome;
+    }
+
     public Long getId() {
         return id;
     }
@@ -51,4 +56,6 @@ public class PilotoDto {
     public void setDataCadastro(java.time.LocalDateTime dataCadastro) {
         this.dataCadastro = dataCadastro;
     }
+
+
 }
